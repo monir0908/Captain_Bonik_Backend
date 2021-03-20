@@ -83,6 +83,7 @@ class Settings(BaseSettings):
     USERS_OPEN_REGISTRATION: bool = False
 
     class Config:
+        env_file = ".env"
         case_sensitive = True
 
 
