@@ -28,7 +28,7 @@ def read_items(
     return items
 
 
-@router.post("/", response_model=schemas.Item)
+@router.post("/save-item", response_model=schemas.Item)
 def create_item(
     *,
     db: Session = Depends(deps.get_db),

@@ -12,27 +12,31 @@ from utils import send_new_account_email
 
 router = APIRouter()
 
-
-@router.get("/")
-def read_users() -> Any:
-    
-    return {
-        "Msg": "Hello World !"
-    }
-
-
 # @router.get("/", response_model=List[schemas.User])
 # def read_users(
 #     db: Session = Depends(deps.get_db),
 #     skip: int = 0,
-#     limit: int = 100,
-#     current_user: models.User = Depends(deps.get_current_active_superuser),
+#     limit: int = 100
 # ) -> Any:
 #     """
 #     Retrieve users.
 #     """
 #     users = crud.user.get_multi(db, skip=skip, limit=limit)
 #     return users
+
+
+@router.get("/", response_model=List[schemas.User])
+def read_users(
+    db: Session = Depends(deps.get_db),
+    skip: int = 0,
+    limit: int = 100,
+    current_user: models.User = Depends(deps.get_current_active_superuser),
+) -> Any:
+    """
+    Retrieve users.
+    """
+    users = crud.user.get_multi(db, skip=skip, limit=limit)
+    return users
 
 
 @router.post("/", response_model=schemas.User)
