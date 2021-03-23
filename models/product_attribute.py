@@ -7,7 +7,7 @@ from db.base_class import Base
 
 if TYPE_CHECKING:
     from .product import Product  # noqa: F401
-    from .color import Color  # noqa: F401
+    from .attribute import Attribute  # noqa: F401
 
 
 class ProductAttribute(Base):
@@ -18,5 +18,5 @@ class ProductAttribute(Base):
     product = relationship("Product", back_populates="product_attributes")
 
     # when child
-    color_id = Column(Integer, ForeignKey("color.id"))
-    color = relationship("Color", back_populates="product_attributes")
+    attribute_id = Column(Integer, ForeignKey("attribute.id"))
+    attribute = relationship("Attribute", back_populates="product_attributes")
